@@ -3,8 +3,9 @@
 This repository is dual-licensed. The `LICENSE` file (GNU GPLv3) covers the
 application code — components, data-loading logic, and build configuration.
 
-**This file covers the poem content** in `src/data/poems/` and
-`src/data/poets.js`, which is three different things at once:
+**This file covers everything else: the poem content** in
+`src/data/poems/` and `src/data/poets.js`, which is three different
+things at once:
 
 - **Original source texts** by al-Mutanabbī, Ibn Zaydūn, Ahmed Shawqi,
   Gibran Khalil Gibran, and the selected English poets are in the public

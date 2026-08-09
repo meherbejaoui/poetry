@@ -1,10 +1,22 @@
 import { useMemo, useState } from "react";
 import { THEMES, themeById } from "./data/themes.js";
 import { poemsByThemeAndType } from "./data/poems/index.js";
+import { SiteHeader, SiteFooter } from "./design/components/Shell.jsx";
+import KofiButton from "./design/components/KofiButton.jsx";
+import Label from "./design/components/Label.jsx";
 import ThemeGrid from "./components/ThemeGrid.jsx";
 import TypePicker from "./components/TypePicker.jsx";
 import PoemView from "./components/PoemView.jsx";
-import Header from "./components/Header.jsx";
+
+const h1 = {
+  fontFamily: "var(--serif)",
+  fontSize: "var(--text-display)",
+  lineHeight: 1.05,
+  margin: 0,
+  color: "var(--ink)",
+  fontWeight: 400,
+  letterSpacing: "-0.01em",
+};
 
 export default function App() {
   const [themeId, setThemeId] = useState(null);
@@ -37,7 +49,8 @@ export default function App() {
     setPoemIndex(next);
   };
 
-  const backToThemes = () => {
+  const backToThemes = (e) => {
+    e?.preventDefault?.();
     setThemeId(null);
     setIsAiGenerated(null);
     setPoemIndex(0);
@@ -49,11 +62,34 @@ export default function App() {
   };
 
   return (
-    <div className="app">
-      <Header onHome={backToThemes} />
-      <main>
+    <div style={{ minHeight: "100vh", background: "var(--bg)" }}>
+      <SiteHeader onLogoClick={backToThemes} />
+      <main
+        style={{
+          maxWidth: "var(--content-width-wide)",
+          margin: "0 auto",
+          padding: "clamp(32px, 6vw, 72px) clamp(18px, 5vw, 28px) 40px",
+        }}
+      >
         {!themeId && (
-          <ThemeGrid themes={THEMES} onChoose={chooseTheme} />
+          <>
+            <Label>trilingual poems</Label>
+            <h1 style={{ ...h1, marginTop: 10 }}>Poetry</h1>
+            <p
+              style={{
+                fontFamily: "var(--sans)",
+                fontSize: 17,
+                lineHeight: 1.6,
+                color: "var(--muted)",
+                maxWidth: 640,
+                margin: "18px 0 0",
+              }}
+            >
+              Pick a theme to read a classical or modern poem — or an
+              AI-generated one — in Arabic, English, and Mongolian at once.
+            </p>
+            <ThemeGrid themes={THEMES} onChoose={chooseTheme} />
+          </>
         )}
 
         {themeId && isAiGenerated === null && theme && (
@@ -73,9 +109,7 @@ export default function App() {
             isAiGenerated={isAiGenerated}
             canShowAnother={pool.length > 1}
             onShowAnother={showAnother}
-            onSwitchType={() =>
-              chooseType(isAiGenerated ? false : true)
-            }
+            onSwitchType={() => chooseType(isAiGenerated ? false : true)}
             otherTypeAvailable={
               poemsByThemeAndType(themeId, !isAiGenerated).length > 0
             }
@@ -84,13 +118,8 @@ export default function App() {
           />
         )}
       </main>
-      <footer className="site-footer">
-        <p>
-          Classical and modern poems in Arabic, English, and Mongolian
-          (Cyrillic), plus AI-generated poems clearly labeled as such.
-          Translations are AI-assisted, not scholarly.{" "}
-        </p>
-      </footer>
+      <SiteFooter />
+      <KofiButton />
     </div>
   );
 }

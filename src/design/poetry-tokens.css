@@ -1,0 +1,39 @@
+/* Poetry-specific functional accent colors, layered on top of the shared
+   neutral design system (src/design/tokens.css) — same pattern as the
+   per-game accent files in edu (src/games/[game]/tokens.css). These mark which
+   language a column is in and whether a poem is original or AI-generated,
+   so they live here rather than in the shared token set. */
+:root {
+  --po-ar: #93432f; /* Arabic column accent — rust */
+  --po-ar-tint: #f7ece4;
+  --po-en: #3e5f7a; /* English column accent — slate blue */
+  --po-en-tint: #eef2f5;
+  --po-mn: #2f7a72; /* Mongolian column accent — teal */
+  --po-mn-tint: #e9f4f2;
+  --po-ai: #6a4fae; /* AI-generated badge — violet */
+  --po-ai-tint: #f2effa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --po-ar: #d98a6d;
+    --po-ar-tint: #2a2117;
+    --po-en: #8fb0c9;
+    --po-en-tint: #1c2126;
+    --po-mn: #7bc4b9;
+    --po-mn-tint: #16302c;
+    --po-ai: #a892e0;
+    --po-ai-tint: #241f2e;
+  }
+}
+
+:root[data-theme="dark"] {
+  --po-ar: #d98a6d;
+  --po-ar-tint: #2a2117;
+  --po-en: #8fb0c9;
+  --po-en-tint: #1c2126;
+  --po-mn: #7bc4b9;
+  --po-mn-tint: #16302c;
+  --po-ai: #a892e0;
+  --po-ai-tint: #241f2e;
+}

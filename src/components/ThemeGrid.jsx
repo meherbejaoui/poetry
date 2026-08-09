@@ -1,27 +1,41 @@
+import Card from "../design/components/Card.jsx";
+
 export default function ThemeGrid({ themes, onChoose }) {
   return (
-    <section className="theme-picker">
-      <h1>Choose a theme</h1>
-      <p className="lede">
-        Pick a theme to read a classical or modern poem — or an AI-generated
-        one — in Arabic, English, and Mongolian at once.
-      </p>
-      <div className="theme-grid">
-        {themes.map((theme) => (
-          <button
-            key={theme.id}
-            className="theme-card"
-            onClick={() => onChoose(theme.id)}
-            type="button"
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+        gap: "1rem",
+        margin: "2.75rem 0 0",
+      }}
+    >
+      {themes.map((theme) => (
+        <Card
+          as="button"
+          interactive
+          key={theme.id}
+          onClick={() => onChoose(theme.id)}
+          style={{ display: "flex", flexDirection: "column", gap: 6 }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--serif)",
+              fontWeight: 700,
+              fontSize: "1.05rem",
+              color: "var(--ink)",
+            }}
           >
-            <span className="theme-card-en">{theme.label.en}</span>
-            <span className="theme-card-ar" dir="rtl">
-              {theme.label.ar}
-            </span>
-            <span className="theme-card-mn">{theme.label.mn}</span>
-          </button>
-        ))}
-      </div>
-    </section>
+            {theme.label.en}
+          </span>
+          <span dir="rtl" style={{ fontSize: "1.1rem", color: "var(--po-ar)" }}>
+            {theme.label.ar}
+          </span>
+          <span style={{ color: "var(--muted)", fontSize: "0.95rem" }}>
+            {theme.label.mn}
+          </span>
+        </Card>
+      ))}
+    </div>
   );
 }
