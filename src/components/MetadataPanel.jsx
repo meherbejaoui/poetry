@@ -40,27 +40,64 @@ export default function MetadataPanel({ poem }) {
       </div>
 
       {poet && (
-        <div style={{ marginBottom: 12 }}>
-          <strong style={{ fontFamily: "var(--serif)", fontSize: "1.05rem" }}>
-            {poet.name}
-          </strong>
-          {poet.nameAr && (
-            <span dir="rtl" style={{ color: "var(--muted)" }}>
-              {" "}
-              ({poet.nameAr})
-            </span>
-          )}
-          <span style={{ color: "var(--muted)" }}> — {poet.years}</span>
-          <p
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--space-3)",
+            alignItems: "flex-start",
+            background: "var(--surface)",
+            border: "1px solid var(--hair)",
+            borderRadius: "var(--radius)",
+            padding: "var(--space-3) var(--space-4)",
+            marginBottom: "var(--space-3)",
+          }}
+        >
+          <span
+            aria-hidden="true"
             style={{
-              margin: "6px 0 0",
-              color: "var(--muted)",
-              fontSize: "0.92rem",
-              fontFamily: "var(--sans)",
+              flex: "0 0 auto",
+              width: 36,
+              height: 36,
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontFamily: "var(--serif)",
+              fontSize: "1rem",
+              color: "var(--surface)",
+              background: "var(--ink)",
             }}
           >
-            {poet.bio}
-          </p>
+            {poet.name.charAt(0)}
+          </span>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ lineHeight: 1.3 }}>
+              <strong style={{ fontFamily: "var(--serif)", fontSize: "1rem" }}>
+                {poet.name}
+              </strong>
+              {poet.nameAr && (
+                <span dir="rtl" style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
+                  {" "}
+                  ({poet.nameAr})
+                </span>
+              )}
+              <span style={{ color: "var(--faint)", fontSize: "0.85rem" }}>
+                {" "}
+                · {poet.years}
+              </span>
+            </div>
+            <p
+              style={{
+                margin: "3px 0 0",
+                color: "var(--muted)",
+                fontSize: "0.85rem",
+                lineHeight: 1.45,
+                fontFamily: "var(--sans)",
+              }}
+            >
+              {poet.bio}
+            </p>
+          </div>
         </div>
       )}
 

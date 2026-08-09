@@ -37,9 +37,9 @@ export default function PoemView({
       <div
         style={{
           display: "flex",
-          gap: "1.2rem",
+          gap: "var(--space-5)",
           justifyContent: "center",
-          marginBottom: "1.5rem",
+          marginBottom: "var(--space-5)",
           flexWrap: "wrap",
         }}
       >
@@ -62,7 +62,7 @@ export default function PoemView({
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "1rem",
+          gap: "var(--space-4)",
           alignItems: "start",
           maxWidth: 1100,
           margin: "0 auto",
@@ -77,10 +77,10 @@ export default function PoemView({
       <div
         style={{
           display: "flex",
-          gap: "1rem",
+          gap: "var(--space-4)",
           justifyContent: "center",
           flexWrap: "wrap",
-          marginTop: "2rem",
+          marginTop: "var(--space-6)",
         }}
       >
         {canShowAnother && (

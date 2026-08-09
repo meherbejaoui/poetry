@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { THEMES, themeById } from "./data/themes.js";
 import { poemsByThemeAndType } from "./data/poems/index.js";
 import { SiteHeader, SiteFooter } from "./design/components/Shell.jsx";
@@ -30,6 +30,14 @@ export default function App() {
 
   const currentPoem = pool[poemIndex] ?? null;
   const theme = themeId ? themeById(themeId) : null;
+
+  // Scroll to the top of the page on every real navigation (theme picked,
+  // type picked, back/forward through the flow) so a reader who scrolled
+  // down into a long poem doesn't land mid-page — or on the footer — on
+  // the next screen. Skip this for "show me another" (same screen).
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [themeId, isAiGenerated]);
 
   const chooseTheme = (id) => {
     setThemeId(id);
@@ -68,7 +76,8 @@ export default function App() {
         style={{
           maxWidth: "var(--content-width-wide)",
           margin: "0 auto",
-          padding: "clamp(32px, 6vw, 72px) clamp(18px, 5vw, 28px) 40px",
+          padding: "clamp(20px, 3.5vw, 40px) clamp(18px, 5vw, 28px) 56px",
+          minHeight: "60vh",
         }}
       >
         {!themeId && (

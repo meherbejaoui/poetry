@@ -29,7 +29,7 @@ export default function PoemColumn({ lang, data }) {
     background: meta.tint,
     border: "1px solid var(--card-border)",
     borderRadius: "var(--radius-lg)",
-    padding: "1.4rem 1.3rem 1.6rem",
+    padding: "var(--space-5) var(--space-4) var(--space-6)",
     minWidth: 0,
   };
 
@@ -51,6 +51,8 @@ export default function PoemColumn({ lang, data }) {
         style={{
           fontFamily: meta.font,
           margin: "0 0 0.9rem",
+          paddingBottom: "0.6rem",
+          borderBottom: `1px solid ${meta.accent}33`,
           fontSize: lang === "ar" ? "1.3rem" : "1.15rem",
           color: "var(--ink)",
         }}

@@ -6,36 +6,36 @@
 // ones — see translationCredit on each entry.
 export const mutanabbiPoems = [
   {
-    id: "mutanabbi-ala-qadr-al-azm",
+    id: "mutanabbi-ana-alladhi",
     poet: "mutanabbi",
     sourceLang: "ar",
     era: "10th century CE",
-    form: "Qaṣīda excerpt (opening couplet)",
-    isExcerpt: true,
+    form: "Complete qiṭʿa (2 bayts)",
+    isExcerpt: false,
     sourceNote:
-      "Opening couplet of a 46-verse qaṣīda in praise of Sayf al-Dawla, composed on the recapture of al-Ḥadath.",
-    themes: ["pride-resilience", "wisdom-reflection", "freedom-resistance"],
+      "A famous, self-contained pair of verses on the reach of his own poetry — widely quoted independently of the longer poem they open.",
+    themes: ["pride-resilience", "wisdom-reflection"],
     translationCredit: "AI-assisted translation",
     translations: {
       ar: {
-        title: "عَلى قَدرِ أَهلِ العَزمِ",
+        title: "أَنا الَّذي نَظَرَ الأَعمى",
         lines: [
-          "عَلى قَدرِ أَهلِ العَزمِ تَأتي العَزائِمُ   ***   وَتَأتي عَلى قَدرِ الكِرامِ المَكارِمُ",
-          "وَتَعظُمُ في عَينِ الصَغيرِ صِغارُها   ***   وَتَصغُرُ في عَينِ العَظيمِ العَظائِمُ",
+          "أَنا الَّذي نَظَرَ الأَعمى إِلى أَدَبي   ***   وَأَسمَعَت كَلِماتي مَن بِهِ صَمَمُ",
+          "أَنامُ مِلءَ جُفوني عَن شَوارِدِها   ***   وَيَسهَرُ الخَلقُ جَرّاها وَيَختَصِمُ",
         ],
       },
       en: {
-        title: "In the Measure of Resolve",
+        title: "I Am the One the Blind Have Seen",
         lines: [
-          "Resolve arrives in the measure of those who hold it — and generosity arrives in the measure of the noble.",
-          "Small things loom large in the eyes of the small; mighty things shrink in the eyes of the great.",
+          "I am the one whose literary genius made the blind see it, and whose words made the deaf hear them.",
+          "I sleep with my eyes shut to the stray thoughts of my verse, while the world stays up all night over it, arguing.",
         ],
       },
       mn: {
-        title: "Зоригийн хэмжээгээр",
+        title: "Сохор хүн намайг харсан",
         lines: [
-          "Шийдэмгий байдал эзнийхээ зоригийн хэмжээгээр ирдэг — өгөөмөр чанар ч эрхэм хүний хэмжээгээр ирдэг.",
-          "Өчүүхэн зүйл жижиг сэтгэлтэй хүний нүдэнд асар том харагдана, харин агуу их зүйл агуу сэтгэлтэй хүний нүдэнд өчүүхэн харагдана.",
+          "Би бол зохиолын билгээрээ сохор хүнийг харуулсан, дүлий хүнд үгээ сонсгосон хүн мөн.",
+          "Би шүлгийнхээ учрыг бодолгүй нүдээ анин унтдаг, харин ертөнц үүнийг маргалдан шөнөжин сэрүүн байдаг.",
         ],
       },
     },
@@ -72,33 +72,32 @@ export const mutanabbiPoems = [
     },
   },
   {
-    id: "mutanabbi-wa-harra-qalbah",
+    id: "mutanabbi-idha-raayta",
     poet: "mutanabbi",
     sourceLang: "ar",
     era: "10th century CE",
-    form: "Qaṣīda excerpt (opening verse)",
-    isExcerpt: true,
-    sourceNote:
-      "Opening verse of the qaṣīda known as \"Wa Ḥarra Qalbāh,\" written in reproach to Sayf al-Dawla.",
-    themes: ["friendship-loss", "pride-resilience"],
+    form: "Single-verse aphorism (bayt)",
+    isExcerpt: false,
+    sourceNote: "A widely quoted standalone verse from al-Mutanabbī's dīwān.",
+    themes: ["wisdom-reflection", "pride-resilience"],
     translationCredit: "AI-assisted translation",
     translations: {
       ar: {
-        title: "واحَرَّ قَلباه",
+        title: "نُيوبُ الَّليث",
         lines: [
-          "واحَرَّ قَلبَاهُ مِمَّن قَلبُهُ شَبِمُ   ***   وَمَن بِجِسمي وَحالي عِندَهُ سَقَمُ",
+          "إِذا رَأَيتَ نُيوبَ الَّليثِ بارِزَةً   ***   فَلا تَظُنَّنَّ أَنَّ الَّليثَ يَبتَسِمُ",
         ],
       },
       en: {
-        title: "The Burning of My Heart",
+        title: "The Lion's Fangs",
         lines: [
-          "Oh, the burning of my heart — from one whose own heart is frost, to whom my body and my state are nothing but an illness.",
+          "If you see the lion's fangs bared, do not think for a moment that the lion is smiling.",
         ],
       },
       mn: {
-        title: "Зүрхний шаталт",
+        title: "Арслангийн соёо",
         lines: [
-          "Ай, миний зүрхний шаталт — зүрх нь мөс мэт хүйтэн хүнээс болж; миний бие, миний байдал түүнд зөвхөн өвчин мэт л санагддаг.",
+          "Хэрэв чи арслангийн ил гарсан соёог харвал, арслан инээмсэглэж байна гэж бүү бод.",
         ],
       },
     },

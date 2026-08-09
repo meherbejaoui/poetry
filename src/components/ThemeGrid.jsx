@@ -7,7 +7,7 @@ export default function ThemeGrid({ themes, onChoose }) {
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
         gap: "1rem",
-        margin: "2.75rem 0 0",
+        margin: "var(--space-7) 0 0",
       }}
     >
       {themes.map((theme) => (
@@ -18,12 +18,16 @@ export default function ThemeGrid({ themes, onChoose }) {
           onClick={() => onChoose(theme.id)}
           style={{ display: "flex", flexDirection: "column", gap: 6 }}
         >
+          <span style={{ fontSize: "1.6rem", lineHeight: 1 }} aria-hidden="true">
+            {theme.icon}
+          </span>
           <span
             style={{
               fontFamily: "var(--serif)",
               fontWeight: 700,
               fontSize: "1.05rem",
               color: "var(--ink)",
+              marginTop: 4,
             }}
           >
             {theme.label.en}

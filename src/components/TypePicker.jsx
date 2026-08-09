@@ -16,7 +16,7 @@ export default function TypePicker({
         className="eg-focus"
         style={{
           fontFamily: "var(--sans)",
-          fontSize: 13.5,
+          fontSize: "var(--text-small)",
           color: "var(--muted)",
           textDecoration: "none",
         }}
@@ -24,8 +24,13 @@ export default function TypePicker({
         ← Choose a different theme
       </a>
 
-      <div style={{ marginTop: 18 }}>
-        <Label>{theme.label.en}</Label>
+      <div style={{ marginTop: "var(--space-5)", textAlign: "center" }}>
+        <span style={{ fontSize: "2.75rem", lineHeight: 1 }} aria-hidden="true">
+          {theme.icon}
+        </span>
+        <div style={{ marginTop: "var(--space-3)" }}>
+          <Label>{theme.label.en}</Label>
+        </div>
         <h1
           style={{
             fontFamily: "var(--serif)",
@@ -38,14 +43,18 @@ export default function TypePicker({
           <span dir="rtl" style={{ color: "var(--po-ar)" }}>
             {theme.label.ar}
           </span>
-          <span aria-hidden="true"> · </span>
+          <span aria-hidden="true" style={{ color: "var(--hair)" }}>
+            {" "}
+            ·{" "}
+          </span>
           <span>{theme.label.mn}</span>
         </h1>
         <p
           style={{
             fontFamily: "var(--sans)",
             color: "var(--muted)",
-            maxWidth: 560,
+            maxWidth: 480,
+            margin: "10px auto 0",
           }}
         >
           Would you like a classical or modern original poem, or an
@@ -56,10 +65,10 @@ export default function TypePicker({
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: "1rem",
-          maxWidth: 640,
-          marginTop: 24,
+          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          gap: "1.25rem",
+          maxWidth: 680,
+          margin: "var(--space-6) auto 0",
         }}
       >
         <Card
@@ -71,41 +80,84 @@ export default function TypePicker({
             cursor: originalCount === 0 ? "not-allowed" : "pointer",
             display: "flex",
             flexDirection: "column",
-            gap: 4,
+            alignItems: "flex-start",
+            gap: 6,
+            padding: "var(--space-5)",
           }}
         >
-          <strong style={{ fontFamily: "var(--serif)", fontSize: "1.1rem" }}>
+          <span style={{ fontSize: "1.6rem" }} aria-hidden="true">
+            📜
+          </span>
+          <strong
+            style={{
+              fontFamily: "var(--serif)",
+              fontSize: "1.2rem",
+              fontWeight: 700,
+              color: "var(--ink)",
+              marginTop: 4,
+            }}
+          >
             Original poem
           </strong>
           <span style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
             {originalCount} {originalCount === 1 ? "poem" : "poems"} by
             historical poets
           </span>
+          <span
+            style={{
+              marginTop: 8,
+              fontFamily: "var(--sans)",
+              fontSize: "0.85rem",
+              fontWeight: 600,
+              color: "var(--safe)",
+            }}
+          >
+            Read a poem →
+          </span>
         </Card>
         <Card
           as="button"
           interactive={aiCount > 0}
           onClick={() => aiCount > 0 && onChoose(true)}
+          accent="var(--po-ai)"
           style={{
             opacity: aiCount === 0 ? 0.4 : 1,
             cursor: aiCount === 0 ? "not-allowed" : "pointer",
             display: "flex",
             flexDirection: "column",
-            gap: 4,
-            borderLeft: "4px solid var(--po-ai)",
+            alignItems: "flex-start",
+            gap: 6,
+            padding: "var(--space-5)",
+            background: "var(--po-ai-tint)",
           }}
         >
+          <span style={{ fontSize: "1.6rem" }} aria-hidden="true">
+            ✨
+          </span>
           <strong
             style={{
               fontFamily: "var(--serif)",
-              fontSize: "1.1rem",
+              fontSize: "1.2rem",
+              fontWeight: 700,
               color: "var(--po-ai)",
+              marginTop: 4,
             }}
           >
-            AI-generated poem ✨
+            AI-generated poem
           </strong>
           <span style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
             {aiCount} {aiCount === 1 ? "poem" : "poems"}, clearly labeled
+          </span>
+          <span
+            style={{
+              marginTop: 8,
+              fontFamily: "var(--sans)",
+              fontSize: "0.85rem",
+              fontWeight: 600,
+              color: "var(--po-ai)",
+            }}
+          >
+            Read a poem →
           </span>
         </Card>
       </div>
