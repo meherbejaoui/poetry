@@ -1,19 +1,19 @@
-// Al-Mutanabbī pieces are short, independently famous verses/couplets
-// rather than full long qaṣīdas — safer to reproduce accurately and a
-// better fit for a poem-card UI than a 40+ verse ode. Arabic text is
-// cross-checked against multiple published sources; English and Mongolian
-// are original AI-assisted translations for this project, not scholarly
-// ones — see translationCredit on each entry.
+// These are famous individual verses of al-Mutanabbī's — widely quoted on
+// their own — but each is genuinely pulled from a longer qaṣīda, not a
+// complete poem in itself. isExcerpt is true throughout for that reason.
+// Arabic text is cross-checked against multiple published sources; English
+// and Mongolian are original AI-assisted translations for this project,
+// not scholarly ones — see translationCredit on each entry.
 export const mutanabbiPoems = [
   {
     id: "mutanabbi-ana-alladhi",
     poet: "mutanabbi",
     sourceLang: "ar",
     era: "10th century CE",
-    form: "Complete qiṭʿa (2 bayts)",
-    isExcerpt: false,
+    form: "Qaṣīda excerpt (2 bayts)",
+    isExcerpt: true,
     sourceNote:
-      "A famous, self-contained pair of verses on the reach of his own poetry — widely quoted independently of the longer poem they open.",
+      "Opening verses of a longer qaṣīda on the reach of his own poetry — extremely famous on their own, but part of a fuller ode.",
     themes: ["pride-resilience", "wisdom-reflection"],
     translationCredit: "AI-assisted translation",
     translations: {
@@ -45,9 +45,10 @@ export const mutanabbiPoems = [
     poet: "mutanabbi",
     sourceLang: "ar",
     era: "10th century CE",
-    form: "Single-verse aphorism (bayt)",
-    isExcerpt: false,
-    sourceNote: "A widely quoted standalone verse from al-Mutanabbī's dīwān.",
+    form: "Qaṣīda excerpt (single bayt)",
+    isExcerpt: true,
+    sourceNote:
+      "A single verse, extremely widely quoted on its own, but originally part of a longer qaṣīda.",
     themes: ["pride-resilience"],
     translationCredit: "AI-assisted translation",
     translations: {
@@ -76,9 +77,10 @@ export const mutanabbiPoems = [
     poet: "mutanabbi",
     sourceLang: "ar",
     era: "10th century CE",
-    form: "Single-verse aphorism (bayt)",
-    isExcerpt: false,
-    sourceNote: "A widely quoted standalone verse from al-Mutanabbī's dīwān.",
+    form: "Qaṣīda excerpt (single bayt)",
+    isExcerpt: true,
+    sourceNote:
+      "A single verse from the qaṣīda known as \"Wa Ḥarra Qalbāh,\" written in reproach to Sayf al-Dawla.",
     themes: ["wisdom-reflection", "pride-resilience"],
     translationCredit: "AI-assisted translation",
     translations: {
@@ -107,9 +109,10 @@ export const mutanabbiPoems = [
     poet: "mutanabbi",
     sourceLang: "ar",
     era: "10th century CE",
-    form: "Single-verse aphorism (bayt)",
-    isExcerpt: false,
-    sourceNote: "A widely quoted standalone verse from al-Mutanabbī's dīwān.",
+    form: "Qaṣīda excerpt (opening bayt)",
+    isExcerpt: true,
+    sourceNote:
+      "Opening verse of a 36-verse qaṣīda of the same name.",
     themes: ["wisdom-reflection"],
     translationCredit: "AI-assisted translation",
     translations: {

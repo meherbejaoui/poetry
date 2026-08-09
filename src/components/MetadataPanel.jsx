@@ -43,62 +43,56 @@ export default function MetadataPanel({ poem }) {
         <div
           style={{
             display: "flex",
-            gap: "var(--space-3)",
-            alignItems: "flex-start",
-            background: "var(--surface)",
-            border: "1px solid var(--hair)",
-            borderRadius: "var(--radius)",
-            padding: "var(--space-3) var(--space-4)",
-            marginBottom: "var(--space-3)",
+            gap: "var(--space-2)",
+            alignItems: "baseline",
+            flexWrap: "wrap",
+            marginBottom: 4,
           }}
         >
           <span
             aria-hidden="true"
             style={{
-              flex: "0 0 auto",
-              width: 36,
-              height: 36,
-              borderRadius: "50%",
-              display: "flex",
+              display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
+              width: 22,
+              height: 22,
+              borderRadius: "50%",
               fontFamily: "var(--serif)",
-              fontSize: "1rem",
+              fontSize: "0.75rem",
               color: "var(--surface)",
               background: "var(--ink)",
+              transform: "translateY(3px)",
             }}
           >
             {poet.name.charAt(0)}
           </span>
-          <div style={{ minWidth: 0 }}>
-            <div style={{ lineHeight: 1.3 }}>
-              <strong style={{ fontFamily: "var(--serif)", fontSize: "1rem" }}>
-                {poet.name}
-              </strong>
-              {poet.nameAr && (
-                <span dir="rtl" style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
-                  {" "}
-                  ({poet.nameAr})
-                </span>
-              )}
-              <span style={{ color: "var(--faint)", fontSize: "0.85rem" }}>
-                {" "}
-                · {poet.years}
-              </span>
-            </div>
-            <p
-              style={{
-                margin: "3px 0 0",
-                color: "var(--muted)",
-                fontSize: "0.85rem",
-                lineHeight: 1.45,
-                fontFamily: "var(--sans)",
-              }}
-            >
-              {poet.bio}
-            </p>
-          </div>
+          <strong style={{ fontFamily: "var(--serif)", fontSize: "1rem" }}>
+            {poet.name}
+          </strong>
+          {poet.nameAr && (
+            <span dir="rtl" style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
+              ({poet.nameAr})
+            </span>
+          )}
+          <span style={{ color: "var(--faint)", fontSize: "0.85rem" }}>
+            · {poet.years}
+          </span>
         </div>
+      )}
+      {poet && (
+        <p
+          style={{
+            margin: "0 0 var(--space-3)",
+            color: "var(--muted)",
+            fontSize: "0.85rem",
+            lineHeight: 1.45,
+            fontFamily: "var(--sans)",
+            maxWidth: "62ch",
+          }}
+        >
+          {poet.bio}
+        </p>
       )}
 
       {poem.isAiGenerated && poem.aiNote && (
