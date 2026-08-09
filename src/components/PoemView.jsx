@@ -1,5 +1,13 @@
 import PoemColumn from "./PoemColumn.jsx";
 import MetadataPanel from "./MetadataPanel.jsx";
+import Button from "../design/components/Button.jsx";
+
+const backLinkStyle = {
+  fontFamily: "var(--sans)",
+  fontSize: 13.5,
+  color: "var(--muted)",
+  textDecoration: "none",
+};
 
 export default function PoemView({
   theme,
@@ -13,48 +21,81 @@ export default function PoemView({
 }) {
   if (!poem) {
     return (
-      <section className="poem-view">
-        <button className="back-link" onClick={onBackToTypePicker} type="button">
+      <div>
+        <button className="eg-focus" onClick={onBackToTypePicker} type="button" style={{ ...backLinkStyle, background: "none", border: "none", cursor: "pointer" }}>
           ← Back
         </button>
-        <p>No poems available for this combination yet.</p>
-      </section>
+        <p style={{ fontFamily: "var(--sans)", color: "var(--muted)" }}>
+          No poems available for this combination yet.
+        </p>
+      </div>
     );
   }
 
   return (
-    <section className="poem-view">
-      <div className="poem-view-nav">
-        <button className="back-link" onClick={onBackToThemes} type="button">
+    <div style={{ textAlign: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "1.2rem",
+          justifyContent: "center",
+          marginBottom: "1.5rem",
+          flexWrap: "wrap",
+        }}
+      >
+        <a href="/" onClick={onBackToThemes} className="eg-focus" style={backLinkStyle}>
           ← All themes
-        </button>
-        <button className="back-link" onClick={onBackToTypePicker} type="button">
+        </a>
+        <button
+          onClick={onBackToTypePicker}
+          type="button"
+          className="eg-focus"
+          style={{ ...backLinkStyle, background: "none", border: "none", cursor: "pointer" }}
+        >
           ← {theme.label.en}
         </button>
       </div>
 
       <MetadataPanel poem={poem} />
 
-      <div className="poem-columns">
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "1rem",
+          alignItems: "start",
+          maxWidth: 1100,
+          margin: "0 auto",
+        }}
+        className="poem-columns"
+      >
         <PoemColumn lang="ar" data={poem.translations.ar} />
         <PoemColumn lang="en" data={poem.translations.en} />
         <PoemColumn lang="mn" data={poem.translations.mn} />
       </div>
 
-      <div className="poem-actions">
+      <div
+        style={{
+          display: "flex",
+          gap: "1rem",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          marginTop: "2rem",
+        }}
+      >
         {canShowAnother && (
-          <button className="action-btn" onClick={onShowAnother} type="button">
+          <Button variant="primary" onClick={onShowAnother} type="button">
             Show me another
-          </button>
+          </Button>
         )}
         {otherTypeAvailable && (
-          <button className="action-btn secondary" onClick={onSwitchType} type="button">
+          <Button variant="secondary" onClick={onSwitchType} type="button">
             {poem.isAiGenerated
               ? "Show an original poem instead"
               : "Show an AI-generated poem instead"}
-          </button>
+          </Button>
         )}
       </div>
-    </section>
+    </div>
   );
 }
