@@ -22,7 +22,7 @@ export default function MetadataPanel({ poem }) {
           display: "flex",
           alignItems: "center",
           gap: "var(--space-3)",
-          marginBottom: "var(--space-3)",
+          marginBottom: "var(--space-2)",
           flexWrap: "wrap",
         }}
       >
@@ -45,8 +45,8 @@ export default function MetadataPanel({ poem }) {
             display: "flex",
             gap: "var(--space-3)",
             alignItems: "flex-start",
-            paddingBottom: "var(--space-3)",
-            marginBottom: "var(--space-3)",
+            paddingBottom: "var(--space-2)",
+            marginBottom: "var(--space-2)",
             borderBottom: "1px solid var(--hair)",
           }}
         >
@@ -120,9 +120,10 @@ export default function MetadataPanel({ poem }) {
 
       <dl
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-          gap: "0.6rem 1.2rem",
+          display: "flex",
+          flexWrap: "wrap",
+          columnGap: "var(--space-6)",
+          rowGap: "var(--space-2)",
           margin: 0,
           fontFamily: "var(--sans)",
         }}
@@ -141,16 +142,16 @@ export default function MetadataPanel({ poem }) {
         )}
         <div>
           <dt style={dtStyle}>Themes</dt>
-          <dd style={ddStyle}>{themeLabels.join(", ")}</dd>
+          <dd style={{ ...ddStyle, maxWidth: "40ch" }}>{themeLabels.join(", ")}</dd>
         </div>
         {poem.sourceNote && (
-          <div style={{ gridColumn: "1 / -1" }}>
+          <div style={{ flexBasis: "100%" }}>
             <dt style={dtStyle}>Source</dt>
             <dd style={ddStyle}>{poem.sourceNote}</dd>
           </div>
         )}
         {poem.translationCredit && (
-          <div style={{ gridColumn: "1 / -1" }}>
+          <div style={{ flexBasis: "100%" }}>
             <dt style={dtStyle}>Translation</dt>
             <dd style={ddStyle}>{poem.translationCredit}</dd>
           </div>
