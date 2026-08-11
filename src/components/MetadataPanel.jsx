@@ -3,11 +3,54 @@ import { THEMES } from "../data/themes.js";
 import Card from "../design/components/Card.jsx";
 import Chip from "../design/components/Chip.jsx";
 
+// Layout follows the "Sidebar" pattern (Every Layout / Heydon Pickering):
+// a flexible column that grows up to a readable measure, paired with a
+// content-sized column that absorbs the remaining space, wrapping to a
+// single column with no media query once the container gets too narrow.
+// The bio's own max-width is set in `ch` (character width), the standard
+// CSS unit for capping line length for readability regardless of
+// container width or font size — see Bringhurst's Elements of
+// Typographic Style (45-75 characters per line, ~66 ideal) and the
+// "Measure" utility in Every Layout.
 export default function MetadataPanel({ poem }) {
   const poet = poem.poet ? POETS[poem.poet] : null;
   const themeLabels = poem.themes
     .map((id) => THEMES.find((t) => t.id === id)?.label.en)
     .filter(Boolean);
+
+  const factsColumn = (
+    <dl
+      style={{
+        display: "flex",
+        flexDirection: poet ? "column" : "row",
+        flexWrap: "wrap",
+        gap: poet ? "var(--space-2)" : "0 var(--space-6)",
+        margin: 0,
+        fontFamily: "var(--sans)",
+        flex: poet ? "1 1 170px" : "0 1 auto",
+        maxWidth: poet ? 260 : "none",
+        paddingLeft: poet ? "var(--space-5)" : 0,
+        borderLeft: poet ? "1px solid var(--hair)" : "none",
+      }}
+    >
+      {poem.era && (
+        <div>
+          <dt style={dtStyle}>Era</dt>
+          <dd style={ddStyle}>{poem.era}</dd>
+        </div>
+      )}
+      {poem.form && (
+        <div>
+          <dt style={dtStyle}>Form</dt>
+          <dd style={ddStyle}>{poem.form}</dd>
+        </div>
+      )}
+      <div>
+        <dt style={dtStyle}>Themes</dt>
+        <dd style={ddStyle}>{themeLabels.join(", ")}</dd>
+      </div>
+    </dl>
+  );
 
   return (
     <Card
@@ -22,7 +65,7 @@ export default function MetadataPanel({ poem }) {
           display: "flex",
           alignItems: "center",
           gap: "var(--space-3)",
-          marginBottom: "var(--space-2)",
+          marginBottom: "var(--space-3)",
           flexWrap: "wrap",
         }}
       >
@@ -39,66 +82,77 @@ export default function MetadataPanel({ poem }) {
         )}
       </div>
 
-      {poet && (
-        <div
-          style={{
-            display: "flex",
-            gap: "var(--space-3)",
-            alignItems: "flex-start",
-            paddingBottom: "var(--space-2)",
-            marginBottom: "var(--space-2)",
-            borderBottom: "1px solid var(--hair)",
-          }}
-        >
-          <span
-            aria-hidden="true"
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "flex-start",
+          gap: "var(--space-5)",
+          paddingBottom: "var(--space-3)",
+          marginBottom: "var(--space-3)",
+          borderBottom: "1px solid var(--hair)",
+        }}
+      >
+        {poet && (
+          <div
             style={{
-              flex: "0 0 auto",
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 40,
-              height: 40,
-              borderRadius: "50%",
-              fontFamily: "var(--serif)",
-              fontSize: "1.05rem",
-              color: "var(--surface)",
-              background: "var(--ink)",
+              gap: "var(--space-3)",
+              flex: "3 1 320px",
+              minWidth: 0,
             }}
           >
-            {poet.name.charAt(0)}
-          </span>
-          <div style={{ minWidth: 0 }}>
-            <div style={{ lineHeight: 1.3 }}>
-              <strong style={{ fontFamily: "var(--serif)", fontSize: "1.05rem" }}>
-                {poet.name}
-              </strong>
-              {poet.nameAr && (
-                <span dir="rtl" style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
-                  {" "}
-                  ({poet.nameAr})
-                </span>
-              )}
-              <span style={{ color: "var(--faint)", fontSize: "0.85rem" }}>
-                {" "}
-                · {poet.years}
-              </span>
-            </div>
-            <p
+            <span
+              aria-hidden="true"
               style={{
-                margin: "4px 0 0",
-                color: "var(--muted)",
-                fontSize: "0.87rem",
-                lineHeight: 1.5,
-                fontFamily: "var(--sans)",
-                maxWidth: "68ch",
+                flex: "0 0 auto",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                fontFamily: "var(--serif)",
+                fontSize: "1.05rem",
+                color: "var(--surface)",
+                background: "var(--ink)",
               }}
             >
-              {poet.bio}
-            </p>
+              {poet.name.charAt(0)}
+            </span>
+            <div style={{ minWidth: 0, maxWidth: "60ch" }}>
+              <div style={{ lineHeight: 1.3 }}>
+                <strong style={{ fontFamily: "var(--serif)", fontSize: "1.05rem" }}>
+                  {poet.name}
+                </strong>
+                {poet.nameAr && (
+                  <span dir="rtl" style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
+                    {" "}
+                    ({poet.nameAr})
+                  </span>
+                )}
+                <span style={{ color: "var(--faint)", fontSize: "0.85rem" }}>
+                  {" "}
+                  · {poet.years}
+                </span>
+              </div>
+              <p
+                style={{
+                  margin: "4px 0 0",
+                  color: "var(--muted)",
+                  fontSize: "0.87rem",
+                  lineHeight: 1.5,
+                  fontFamily: "var(--sans)",
+                }}
+              >
+                {poet.bio}
+              </p>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+
+        {factsColumn}
+      </div>
 
       {poem.isAiGenerated && poem.aiNote && (
         <p
@@ -118,45 +172,30 @@ export default function MetadataPanel({ poem }) {
         </p>
       )}
 
-      <dl
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          columnGap: "var(--space-6)",
-          rowGap: "var(--space-2)",
-          margin: 0,
-          fontFamily: "var(--sans)",
-        }}
-      >
-        {poem.era && (
-          <div>
-            <dt style={dtStyle}>Era</dt>
-            <dd style={ddStyle}>{poem.era}</dd>
-          </div>
-        )}
-        {poem.form && (
-          <div>
-            <dt style={dtStyle}>Form</dt>
-            <dd style={ddStyle}>{poem.form}</dd>
-          </div>
-        )}
-        <div>
-          <dt style={dtStyle}>Themes</dt>
-          <dd style={{ ...ddStyle, maxWidth: "40ch" }}>{themeLabels.join(", ")}</dd>
-        </div>
-        {poem.sourceNote && (
-          <div style={{ flexBasis: "100%" }}>
-            <dt style={dtStyle}>Source</dt>
-            <dd style={ddStyle}>{poem.sourceNote}</dd>
-          </div>
-        )}
-        {poem.translationCredit && (
-          <div style={{ flexBasis: "100%" }}>
-            <dt style={dtStyle}>Translation</dt>
-            <dd style={ddStyle}>{poem.translationCredit}</dd>
-          </div>
-        )}
-      </dl>
+      {(poem.sourceNote || poem.translationCredit) && (
+        <dl
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--space-2)",
+            margin: 0,
+            fontFamily: "var(--sans)",
+          }}
+        >
+          {poem.sourceNote && (
+            <div>
+              <dt style={dtStyle}>Source</dt>
+              <dd style={ddStyle}>{poem.sourceNote}</dd>
+            </div>
+          )}
+          {poem.translationCredit && (
+            <div>
+              <dt style={dtStyle}>Translation</dt>
+              <dd style={ddStyle}>{poem.translationCredit}</dd>
+            </div>
+          )}
+        </dl>
+      )}
     </Card>
   );
 }
