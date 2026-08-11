@@ -13,7 +13,7 @@ export default function MetadataPanel({ poem }) {
     <Card
       style={{
         maxWidth: 900,
-        margin: "0 auto 1.75rem",
+        margin: "0 auto var(--space-5)",
         textAlign: "start",
       }}
     >
@@ -21,8 +21,8 @@ export default function MetadataPanel({ poem }) {
         style={{
           display: "flex",
           alignItems: "center",
-          gap: 12,
-          marginBottom: 12,
+          gap: "var(--space-3)",
+          marginBottom: "var(--space-3)",
           flexWrap: "wrap",
         }}
       >
@@ -43,56 +43,61 @@ export default function MetadataPanel({ poem }) {
         <div
           style={{
             display: "flex",
-            gap: "var(--space-2)",
-            alignItems: "baseline",
-            flexWrap: "wrap",
-            marginBottom: 4,
+            gap: "var(--space-3)",
+            alignItems: "flex-start",
+            paddingBottom: "var(--space-3)",
+            marginBottom: "var(--space-3)",
+            borderBottom: "1px solid var(--hair)",
           }}
         >
           <span
             aria-hidden="true"
             style={{
-              display: "inline-flex",
+              flex: "0 0 auto",
+              display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: 22,
-              height: 22,
+              width: 40,
+              height: 40,
               borderRadius: "50%",
               fontFamily: "var(--serif)",
-              fontSize: "0.75rem",
+              fontSize: "1.05rem",
               color: "var(--surface)",
               background: "var(--ink)",
-              transform: "translateY(3px)",
             }}
           >
             {poet.name.charAt(0)}
           </span>
-          <strong style={{ fontFamily: "var(--serif)", fontSize: "1rem" }}>
-            {poet.name}
-          </strong>
-          {poet.nameAr && (
-            <span dir="rtl" style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
-              ({poet.nameAr})
-            </span>
-          )}
-          <span style={{ color: "var(--faint)", fontSize: "0.85rem" }}>
-            · {poet.years}
-          </span>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ lineHeight: 1.3 }}>
+              <strong style={{ fontFamily: "var(--serif)", fontSize: "1.05rem" }}>
+                {poet.name}
+              </strong>
+              {poet.nameAr && (
+                <span dir="rtl" style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
+                  {" "}
+                  ({poet.nameAr})
+                </span>
+              )}
+              <span style={{ color: "var(--faint)", fontSize: "0.85rem" }}>
+                {" "}
+                · {poet.years}
+              </span>
+            </div>
+            <p
+              style={{
+                margin: "4px 0 0",
+                color: "var(--muted)",
+                fontSize: "0.87rem",
+                lineHeight: 1.5,
+                fontFamily: "var(--sans)",
+                maxWidth: "68ch",
+              }}
+            >
+              {poet.bio}
+            </p>
+          </div>
         </div>
-      )}
-      {poet && (
-        <p
-          style={{
-            margin: "0 0 var(--space-3)",
-            color: "var(--muted)",
-            fontSize: "0.85rem",
-            lineHeight: 1.45,
-            fontFamily: "var(--sans)",
-            maxWidth: "62ch",
-          }}
-        >
-          {poet.bio}
-        </p>
       )}
 
       {poem.isAiGenerated && poem.aiNote && (
@@ -105,7 +110,7 @@ export default function MetadataPanel({ poem }) {
             fontFamily: "var(--sans)",
             color: "var(--muted)",
             borderRadius: 6,
-            margin: "0.5rem 0 0.9rem",
+            margin: "0 0 var(--space-3)",
           }}
         >
           {poem.isTribute && <strong>Tribute to {poem.tributeTo}. </strong>}
@@ -118,7 +123,7 @@ export default function MetadataPanel({ poem }) {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
           gap: "0.6rem 1.2rem",
-          margin: "0.5rem 0 0",
+          margin: 0,
           fontFamily: "var(--sans)",
         }}
       >

@@ -3,11 +3,15 @@ import Label from "../design/components/Label.jsx";
 
 export default function TypePicker({
   theme,
+  allThemes,
   originalCount,
   aiCount,
   onChoose,
   onBack,
+  onSwitchTheme,
 }) {
+  const otherThemes = allThemes.filter((t) => t.id !== theme.id);
+
   return (
     <div>
       <a
@@ -24,7 +28,7 @@ export default function TypePicker({
         ← Choose a different theme
       </a>
 
-      <div style={{ marginTop: "var(--space-5)", textAlign: "center" }}>
+      <div style={{ marginTop: "var(--space-4)", textAlign: "center" }}>
         <span style={{ fontSize: "2.75rem", lineHeight: 1 }} aria-hidden="true">
           {theme.icon}
         </span>
@@ -65,9 +69,9 @@ export default function TypePicker({
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-          gap: "1.25rem",
-          maxWidth: 680,
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "var(--space-5)",
+          maxWidth: 760,
           margin: "var(--space-6) auto 0",
         }}
       >
@@ -82,32 +86,33 @@ export default function TypePicker({
             flexDirection: "column",
             alignItems: "flex-start",
             gap: 6,
-            padding: "var(--space-5)",
+            padding: "var(--space-6)",
           }}
         >
-          <span style={{ fontSize: "1.6rem" }} aria-hidden="true">
+          <span style={{ fontSize: "2rem" }} aria-hidden="true">
             📜
           </span>
           <strong
             style={{
               fontFamily: "var(--serif)",
-              fontSize: "1.2rem",
+              fontSize: "1.35rem",
               fontWeight: 700,
               color: "var(--ink)",
-              marginTop: 4,
+              marginTop: 6,
             }}
           >
             Original poem
           </strong>
-          <span style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
+          <span style={{ color: "var(--muted)", fontSize: "0.92rem", lineHeight: 1.5 }}>
             {originalCount} {originalCount === 1 ? "poem" : "poems"} by
-            historical poets
+            historical poets — al-Mutanabbī, Ibn Zaydūn, Shawqi, Gibran,
+            Shakespeare, and others — translated into all three languages.
           </span>
           <span
             style={{
-              marginTop: 8,
+              marginTop: 10,
               fontFamily: "var(--sans)",
-              fontSize: "0.85rem",
+              fontSize: "0.88rem",
               fontWeight: 600,
               color: "var(--safe)",
             }}
@@ -127,32 +132,34 @@ export default function TypePicker({
             flexDirection: "column",
             alignItems: "flex-start",
             gap: 6,
-            padding: "var(--space-5)",
+            padding: "var(--space-6)",
             background: "var(--po-ai-tint)",
           }}
         >
-          <span style={{ fontSize: "1.6rem" }} aria-hidden="true">
+          <span style={{ fontSize: "2rem" }} aria-hidden="true">
             ✨
           </span>
           <strong
             style={{
               fontFamily: "var(--serif)",
-              fontSize: "1.2rem",
+              fontSize: "1.35rem",
               fontWeight: 700,
               color: "var(--po-ai)",
-              marginTop: 4,
+              marginTop: 6,
             }}
           >
             AI-generated poem
           </strong>
-          <span style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
-            {aiCount} {aiCount === 1 ? "poem" : "poems"}, clearly labeled
+          <span style={{ color: "var(--muted)", fontSize: "0.92rem", lineHeight: 1.5 }}>
+            {aiCount} {aiCount === 1 ? "poem" : "poems"}, composed natively
+            in Arabic or Mongolian and translated into the rest — always
+            marked with a clear AI badge.
           </span>
           <span
             style={{
-              marginTop: 8,
+              marginTop: 10,
               fontFamily: "var(--sans)",
-              fontSize: "0.85rem",
+              fontSize: "0.88rem",
               fontWeight: 600,
               color: "var(--po-ai)",
             }}
@@ -160,6 +167,45 @@ export default function TypePicker({
             Read a poem →
           </span>
         </Card>
+      </div>
+
+      <div style={{ marginTop: "var(--space-7)", textAlign: "center" }}>
+        <Label>or jump to another theme</Label>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "var(--space-2)",
+            maxWidth: 760,
+            margin: "var(--space-3) auto 0",
+          }}
+        >
+          {otherThemes.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              className="eg-focus"
+              onClick={() => onSwitchTheme(t.id)}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                fontFamily: "var(--sans)",
+                fontSize: "0.85rem",
+                color: "var(--muted)",
+                background: "var(--surface)",
+                border: "1px solid var(--hair)",
+                borderRadius: 999,
+                padding: "6px 14px",
+                cursor: "pointer",
+              }}
+            >
+              <span aria-hidden="true">{t.icon}</span>
+              {t.label.en}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

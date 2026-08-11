@@ -76,27 +76,40 @@ export default function App() {
         style={{
           maxWidth: "var(--content-width-wide)",
           margin: "0 auto",
-          padding: "clamp(20px, 3.5vw, 40px) clamp(18px, 5vw, 28px) 56px",
-          minHeight: "60vh",
+          padding: "clamp(14px, 2.5vw, 28px) clamp(18px, 5vw, 28px) 40px",
         }}
       >
         {!themeId && (
           <>
-            <Label>trilingual poems</Label>
-            <h1 style={{ ...h1, marginTop: 10 }}>Poetry</h1>
-            <p
+            <div
               style={{
-                fontFamily: "var(--sans)",
-                fontSize: 17,
-                lineHeight: 1.6,
-                color: "var(--muted)",
-                maxWidth: 640,
-                margin: "18px 0 0",
+                display: "flex",
+                alignItems: "flex-end",
+                justifyContent: "space-between",
+                gap: "var(--space-6)",
+                flexWrap: "wrap",
               }}
             >
-              Pick a theme to read a classical or modern poem — or an
-              AI-generated one — in Arabic, English, and Mongolian at once.
-            </p>
+              <div style={{ maxWidth: 560 }}>
+                <Label>trilingual poems</Label>
+                <h1 style={{ ...h1, marginTop: 8 }}>Poetry</h1>
+              </div>
+              <p
+                style={{
+                  fontFamily: "var(--sans)",
+                  fontSize: 17,
+                  lineHeight: 1.55,
+                  color: "var(--muted)",
+                  maxWidth: 420,
+                  margin: 0,
+                  flex: "1 1 320px",
+                }}
+              >
+                Pick a theme to read a classical or modern poem — or an
+                AI-generated one — in Arabic, English, and Mongolian at
+                once.
+              </p>
+            </div>
             <ThemeGrid themes={THEMES} onChoose={chooseTheme} />
           </>
         )}
@@ -104,10 +117,12 @@ export default function App() {
         {themeId && isAiGenerated === null && theme && (
           <TypePicker
             theme={theme}
+            allThemes={THEMES}
             originalCount={poemsByThemeAndType(themeId, false).length}
             aiCount={poemsByThemeAndType(themeId, true).length}
             onChoose={chooseType}
             onBack={backToThemes}
+            onSwitchTheme={chooseTheme}
           />
         )}
 

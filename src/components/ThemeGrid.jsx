@@ -7,7 +7,7 @@ export default function ThemeGrid({ themes, onChoose }) {
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
         gap: "1rem",
-        margin: "var(--space-7) 0 0",
+        margin: "var(--space-5) 0 0",
       }}
     >
       {themes.map((theme) => (
