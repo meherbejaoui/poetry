@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { THEMES, themeById } from "./data/themes.js";
 import { poemsByThemeAndType } from "./data/poems/index.js";
 import { SiteHeader, SiteFooter } from "./design/components/Shell.jsx";
-import KofiButton from "./design/components/KofiButton.jsx";
 import Label from "./design/components/Label.jsx";
 import ThemeGrid from "./components/ThemeGrid.jsx";
 import TypePicker from "./components/TypePicker.jsx";
@@ -247,7 +246,6 @@ export default function App() {
         )}
       </main>
       <SiteFooter />
-      <KofiButton />
     </div>
   );
 }
