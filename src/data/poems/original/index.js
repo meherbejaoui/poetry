@@ -14,6 +14,8 @@ import { abbasIbnAlAhnafPoems } from "./abbasIbnAlAhnaf.js";
 import { ebbrowningPoems } from "./ebbrowning.js";
 import { modernAmericanAndWarPoetsPoems } from "./modernAmericanAndWarPoets.js";
 import { victorianAndEdwardianPoems } from "./victorianAndEdwardian.js";
+import { wordsworthPoems } from "./wordsworth.js";
+import { keatsPoems } from "./keats.js";
 
 export const originalPoems = [
   ...mutanabbiPoems,
@@ -32,4 +34,6 @@ export const originalPoems = [
   ...ebbrowningPoems,
   ...modernAmericanAndWarPoetsPoems,
   ...victorianAndEdwardianPoems,
+  ...wordsworthPoems,
+  ...keatsPoems,
 ].map((p) => ({ ...p, isAiGenerated: false }));
