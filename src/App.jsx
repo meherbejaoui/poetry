@@ -8,6 +8,20 @@ import ThemeGrid from "./components/ThemeGrid.jsx";
 import TypePicker from "./components/TypePicker.jsx";
 import PoemView from "./components/PoemView.jsx";
 
+// Fisher-Yates shuffle of [0, 1, ..., n-1], used to walk a theme's poems in
+// random order without repeating any of them until the whole set has been
+// seen once (a "shuffle bag"), rather than picking a fresh random index
+// every time — which reads as random but can stall on the same handful of
+// poems and never surface the rest.
+function shuffledIndexes(length) {
+  const order = Array.from({ length }, (_, i) => i);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}
+
 const h1 = {
   fontFamily: "var(--serif)",
   fontSize: "var(--text-display)",
@@ -21,14 +35,15 @@ const h1 = {
 export default function App() {
   const [themeId, setThemeId] = useState(null);
   const [isAiGenerated, setIsAiGenerated] = useState(null);
-  const [poemIndex, setPoemIndex] = useState(0);
+  const [order, setOrder] = useState([]);
+  const [cursor, setCursor] = useState(0);
 
   const pool = useMemo(() => {
     if (!themeId || isAiGenerated === null) return [];
     return poemsByThemeAndType(themeId, isAiGenerated);
   }, [themeId, isAiGenerated]);
 
-  const currentPoem = pool[poemIndex] ?? null;
+  const currentPoem = pool[order[cursor]] ?? null;
   const theme = themeId ? themeById(themeId) : null;
 
   // Scroll to the top of the page on every real navigation (theme picked,
@@ -42,31 +57,48 @@ export default function App() {
   const chooseTheme = (id) => {
     setThemeId(id);
     setIsAiGenerated(null);
-    setPoemIndex(0);
+    setOrder([]);
+    setCursor(0);
   };
 
   const chooseType = (aiGenerated) => {
     setIsAiGenerated(aiGenerated);
-    setPoemIndex(0);
+    const newPool = poemsByThemeAndType(themeId, aiGenerated);
+    setOrder(shuffledIndexes(newPool.length));
+    setCursor(0);
   };
 
   const showAnother = () => {
     if (pool.length <= 1) return;
-    let next = Math.floor(Math.random() * pool.length);
-    if (next === poemIndex) next = (next + 1) % pool.length;
-    setPoemIndex(next);
+    const next = cursor + 1;
+    if (next < order.length) {
+      setCursor(next);
+      return;
+    }
+    // Seen every poem in this shuffle — reshuffle for the next lap, just
+    // making sure the new lap doesn't open on the same poem that closed
+    // the last one.
+    const justShown = order[cursor];
+    const newOrder = shuffledIndexes(pool.length);
+    if (newOrder[0] === justShown) {
+      [newOrder[0], newOrder[1]] = [newOrder[1], newOrder[0]];
+    }
+    setOrder(newOrder);
+    setCursor(0);
   };
 
   const backToThemes = (e) => {
     e?.preventDefault?.();
     setThemeId(null);
     setIsAiGenerated(null);
-    setPoemIndex(0);
+    setOrder([]);
+    setCursor(0);
   };
 
   const backToTypePicker = () => {
     setIsAiGenerated(null);
-    setPoemIndex(0);
+    setOrder([]);
+    setCursor(0);
   };
 
   return (
