@@ -122,6 +122,13 @@ export const POETS = {
     origin: "Baghdad, Iraq",
     bio: "Abbasid-era poet who, unusually for his time, composed almost nothing but pure ghazal — tender, uncomplicated love poetry — avoiding panegyric, satire, and wine poetry entirely.",
   },
+  abuFiras: {
+    name: "Abū Firās al-Ḥamdānī",
+    nameAr: "أبو فراس الحمداني",
+    years: "932–968 CE",
+    origin: "Northern Syria",
+    bio: "Hamdanid prince and poet, cousin of Sayf al-Dawla of Aleppo and governor of Manbij. Taken prisoner by the Byzantines, he spent about four years in captivity, and the poems he wrote there, the Rūmiyyāt, are among the most admired in Arabic.",
+  },
   poe: {
     name: "Edgar Allan Poe",
     years: "1809–1849 CE",

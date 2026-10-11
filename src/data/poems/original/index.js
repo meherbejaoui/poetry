@@ -11,6 +11,7 @@ import { buhturiPoems } from "./buhturi.js";
 import { basharPoems } from "./bashar.js";
 import { abuNuwasPoems } from "./abuNuwas.js";
 import { abbasIbnAlAhnafPoems } from "./abbasIbnAlAhnaf.js";
+import { abuFirasPoems } from "./abuFiras.js";
 import { ebbrowningPoems } from "./ebbrowning.js";
 import { modernAmericanAndWarPoetsPoems } from "./modernAmericanAndWarPoets.js";
 import { victorianAndEdwardianPoems } from "./victorianAndEdwardian.js";
@@ -31,6 +32,7 @@ export const originalPoems = [
   ...basharPoems,
   ...abuNuwasPoems,
   ...abbasIbnAlAhnafPoems,
+  ...abuFirasPoems,
   ...ebbrowningPoems,
   ...modernAmericanAndWarPoetsPoems,
   ...victorianAndEdwardianPoems,

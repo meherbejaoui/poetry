@@ -25,12 +25,18 @@ function shuffledIndexes(length) {
 // shared link works from a cold load on GitHub Pages without any server
 // rewrite rule — the fragment never reaches the server, so the app just
 // loads index.html as usual and restores the route from location.hash.
+// Poem ids that changed, so links shared under the old id still open the
+// same poem. Old id → current id.
+const RENAMED_POEMS = {
+  "mutanabbi-araka-asiyya": "abuFiras-araka-asiyya",
+};
+
 function parseRoute(hash) {
   const parts = hash.replace(/^#\/?/, "").split("/").filter(Boolean);
   const [themeId, type, poemId] = parts;
   if (!themeId || !themeById(themeId)) return null;
   if (type !== "original" && type !== "ai") return { themeId, isAiGenerated: null, poemId: null };
-  return { themeId, isAiGenerated: type === "ai", poemId: poemId || null };
+  return { themeId, isAiGenerated: type === "ai", poemId: RENAMED_POEMS[poemId] ?? poemId ?? null };
 }
 
 function routeFor(themeId, type, poemId) {
