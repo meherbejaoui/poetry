@@ -49,7 +49,7 @@ export function SiteHeader({ onLogoClick }) {
           /
         </span>
         <a
-          href="/"
+          href="/poetry/"
           className="eg-focus"
           style={{ color: "var(--muted)", textDecoration: "none" }}
           onClick={onLogoClick}
@@ -103,8 +103,8 @@ export function SiteFooter() {
         Source
       </a>
       <span style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--faint)" }}>
-        Code <a href="/LICENSE" className="eg-focus" style={{ color: "var(--faint)" }}>GPLv3</a> · Content{" "}
-        <a href="/LICENSE-CONTENT.md" className="eg-focus" style={{ color: "var(--faint)" }}>CC BY-NC-SA 4.0</a>
+        Code <a href="https://github.com/meherbejaoui/poetry/blob/main/LICENSE" className="eg-focus" style={{ color: "var(--faint)" }}>GPLv3</a> · Content{" "}
+        <a href="https://github.com/meherbejaoui/poetry/blob/main/LICENSE-CONTENT.md" className="eg-focus" style={{ color: "var(--faint)" }}>CC BY-NC-SA 4.0</a>
       </span>
     </footer>
   );
