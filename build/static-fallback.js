@@ -117,18 +117,6 @@ ${items}
     .join("\n");
 }
 
-function generatedList() {
-  return generated
-    .map((poem) => {
-      const details = [poem.form, `composed in ${LANGUAGE[poem.composedLang] || poem.composedLang}`, poem.generatedDate]
-        .filter(Boolean)
-        .map(esc)
-        .join(" · ");
-      return `<li>${poemTitle(poem, poem.composedLang)}<br><span class="sf-meta">${details} · themes: ${esc(themeNames(poem))}</span>${poem.aiNote ? `<br>${esc(poem.aiNote)}` : ""}</li>`;
-    })
-    .join("\n");
-}
-
 function catalogue() {
   const poetCount = new Set(originals.map((poem) => poem.poet)).size;
   const fromArabic = originals.filter((poem) => poem.sourceLang === "ar").length;
@@ -149,11 +137,6 @@ ${themeList()}
 </ul>
 <h2>Poets and poems</h2>
 ${poetSections()}
-<h2>AI-generated poems</h2>
-<p>These ${generated.length} poems were written by an AI model, not by a human poet. Each one carries a visible "AI Generated" badge in the app and is kept separate from the original poems above.</p>
-<ul>
-${generatedList()}
-</ul>
 </main>
 <footer class="sf-foot">
 <p>Poems by Meher Bejaoui, built with Claude. <a href="https://www.meherbejaoui.com/">meherbejaoui.com</a> · <a href="https://github.com/meherbejaoui/poetry">Source</a> · Code <a href="https://github.com/meherbejaoui/poetry/blob/main/LICENSE">GPLv3</a> · Content <a href="https://github.com/meherbejaoui/poetry/blob/main/LICENSE-CONTENT.md">CC BY-NC-SA 4.0</a></p>
