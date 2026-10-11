@@ -139,7 +139,7 @@ ${themeList()}
 ${poetSections()}
 </main>
 <footer class="sf-foot">
-<p>Poems by Meher Bejaoui, built with Claude. <a href="https://www.meherbejaoui.com/">meherbejaoui.com</a> · <a href="https://github.com/meherbejaoui/poetry">Source</a> · Code <a href="https://github.com/meherbejaoui/poetry/blob/main/LICENSE">GPLv3</a> · Content <a href="https://github.com/meherbejaoui/poetry/blob/main/LICENSE-CONTENT.md">CC BY-NC-SA 4.0</a></p>
+<p>Poems by Meher Bejaoui, built with Claude. <a href="https://www.meherbejaoui.com/">meherbejaoui.com</a> · <a href="https://www.meherbejaoui.com/contact/">Contact</a> · <a href="https://www.meherbejaoui.com/terms/">Terms &amp; Privacy</a> · <a href="https://github.com/meherbejaoui/poetry">Source</a> · Code <a href="https://github.com/meherbejaoui/poetry/blob/main/LICENSE">GPLv3</a> · Content <a href="https://github.com/meherbejaoui/poetry/blob/main/LICENSE-CONTENT.md">CC BY-NC-SA 4.0</a></p>
 <p>The side-by-side reader is interactive and needs JavaScript. This page lists what the collection contains.</p>
 </footer>
 </div>`;
