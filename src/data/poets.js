@@ -127,7 +127,7 @@ export const POETS = {
     nameAr: "أبو فراس الحمداني",
     years: "932–968 CE",
     origin: "Northern Syria",
-    bio: "Hamdanid prince and poet, cousin of Sayf al-Dawla of Aleppo and governor of Manbij. Taken prisoner by the Byzantines, he spent about four years in captivity, and the poems he wrote there, the Rūmiyyāt, are among the most admired in Arabic.",
+    bio: "Hamdanid prince and poet, cousin of Sayf al-Dawla of Aleppo and governor of Manbij. Taken prisoner by the Byzantines, he spent several years in captivity in Constantinople until he was ransomed in 966, and the poems he wrote there, the Rūmiyyāt, are among the most admired in Arabic.",
   },
   poe: {
     name: "Edgar Allan Poe",
