@@ -49,6 +49,17 @@ pnpm preview   # serve the production build locally
 Deploys to GitHub Pages automatically on push to `main` via
 `.github/workflows/deploy.yml`.
 
+## Page text without JavaScript
+
+The reader is client-rendered, so on its own the built page would ship an
+empty `<div id="root">`. At build time, `build/static-fallback.js` (a small
+Vite plugin) writes a plain-HTML catalogue into that mount point: the themes,
+every poet with their biography, and every poem with its form, era and source
+note. It is generated from the same data files the app reads, so it stays
+current without any upkeep. React replaces it as soon as the app mounts;
+readers and crawlers that do not run JavaScript get real text instead of a
+blank page. Poem texts are not written out, only the index of the collection.
+
 ## License
 
 This repository is dual-licensed:
