@@ -96,6 +96,20 @@ export function SiteFooter() {
         meherbejaoui.com ↗
       </a>
       <a
+        href="https://www.meherbejaoui.com/contact/"
+        className="eg-focus"
+        style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--faint)", textDecoration: "none" }}
+      >
+        Contact
+      </a>
+      <a
+        href="https://www.meherbejaoui.com/terms/"
+        className="eg-focus"
+        style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--faint)", textDecoration: "none" }}
+      >
+        Terms &amp; Privacy
+      </a>
+      <a
         href="https://github.com/meherbejaoui/poetry"
         className="eg-focus"
         style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--faint)", textDecoration: "none" }}
